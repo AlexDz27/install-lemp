@@ -62,7 +62,7 @@ Now, in your browser, go to http://localhost. You should see default "Welcome to
 
 To create your first local website, follow these steps:
 
-1. First, we need a website with some content. Create a directory `test-php` somewhere in your computer. The files structure is as follows:
+1. First, we need a website with some content. Create a directory `test-php` somewhere in your computer (preferably, in your `home` directory). The files structure is as follows:
    ```
    test-php
    |  index.html
@@ -72,7 +72,8 @@ To create your first local website, follow these steps:
       |  inner.html
    ```
    Put some content into these files. You can just type `Hello, world!` there without any HTML tags, it will work.
-2. Go to `/etc/nginx/sites-available/` and create a file with name `test-php.local.conf`.
+2. Go to `/etc/nginx/sites-available/` and create a file with name `test-php.local.conf`. You can do this with command
+   `sudo touch test-php.local.conf`. **Note**, that here we are using `sudo` - this is because now we're dealing with Linux's system files.
 3. Put the content above in that file:
 <pre>
 server {
@@ -82,6 +83,14 @@ server {
 }
 </pre>
 
+You can copy this and put it in the file with this command:
+
+```
+sudo xdg-open test-php.local.conf
+```
+
+And then just Ctrl + V :)
+
 4. Now we need to tell Nginx that our website should be "online". Go to `/etc/nginx/sites-enabled` and run this command:
    
    `sudo ln -s ../sites-available/test-php.local.conf`
@@ -90,7 +99,7 @@ server {
 
   `sudo nginx -s reload`
   
-6. Now we need to tell our computer that our website can be located by `localhost` IP address. To do that, open file `/etc/hosts`
+6. Now we need to tell our computer that our website can be located by `localhost` IP address. To do that, open file `/etc/hosts` (remember about `sudo`)
 and add the following line:
    
    `127.0.0.1	php-test.local`
