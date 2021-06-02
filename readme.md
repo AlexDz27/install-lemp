@@ -102,15 +102,15 @@ And then just Ctrl + V :)
 6. Now we need to tell our computer that our website can be located by `localhost` IP address. To do that, open file `/etc/hosts` (remember about `sudo`)
 and add the following line:
    
-   `127.0.0.1	php-test.local`
+   `127.0.0.1	test-php.local`
 
 Now you should be able to view your local website. Go to these pages:
 ```
-http://php-test.local
-http://php-test.local/index.html
-http://php-test.local/another.html
-http://php-test.local/directory/inner.html
-http://php-test.local/foo
+http://test-php.local
+http://test-php.local/index.html
+http://test-php.local/another.html
+http://test-php.local/directory/inner.html
+http://test-php.local/foo
 ```
 
 Only the last URL must give you a 404 error page.
