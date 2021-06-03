@@ -5,18 +5,18 @@
 Let's start with PHP. The commands below update our system and add a source from where we will download PHP:
 
 ```
-apt-get update && apt-get upgrade
+sudo apt-get update && sudo apt-get upgrade
 
-apt-get install software-properties-common
+sudo apt-get install software-properties-common
 
-add-apt-repository ppa:ondrej/php
+sudo add-apt-repository ppa:ondrej/php
 
-apt-get update
+sudo apt-get update
 ```
 
 Now we can install PHP:
 
-`apt-get install php8.0`
+`sudo apt-get install php8.0`
 
 Check the PHP installation via this command:
 
@@ -28,11 +28,16 @@ You should get something like this:
 
 Next, you should install common modules (extensions) for PHP. Here's the command for that:
 
-`apt-get install php8.0-fpm php8.0-curl php8.0-gd php8.0-mbstring php8.0-zip php8.0-mysql php8.0-xml`
+`sudo apt-get install php8.0-fpm php8.0-curl php8.0-gd php8.0-mbstring php8.0-zip php8.0-mysql php8.0-xml`
 
 ## Nginx
 
-Install Nginx via this command:
+Before installing Nginx, we should stop Apache2 (it is the default Ubuntu web server).
+We can do this with this command:
+
+`sudo systemctl stop apache2.service`
+
+Ok, now we can continue. Install Nginx via this command:
 
 `sudo apt install nginx`
 
@@ -118,3 +123,18 @@ Only the last URL must give you a 404 error page.
 ## MySQL
 
 ### To be done
+
+## Xdebug
+
+To install Xdebug, run `sudo apt-get install php-xdebug`.
+
+But after install Xdebug, we want to be able to debug our code inside PhpStorm.
+To do that, open `/etc/php/8.0/fpm/php.ini`.
+
+Here, we need to make PhpStorm be able to see Xdebug's debugging process. To do that,
+go to the end of the file and paste this content:
+
+```
+[xdebug]
+xdebug.mode=debug
+```
