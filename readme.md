@@ -61,9 +61,11 @@ Output
            └─2380 nginx: worker process
 </pre>
 
-Now, in your browser, go to http://localhost. You should see default "Welcome to Nginx!" page:
+Now, in your browser, go to http://localhost. You should see "Apache2 Ubuntu Default Page":
 
 ![](img/default_page.png)
+
+You see this and not Nginx because you have Apache2 installed by default on Ubuntu.
 
 To create your first local website, follow these steps:
 
@@ -120,11 +122,27 @@ http://test-php.local/foo
 
 Only the last URL must give you a 404 error page.
 
-## MySQL
+OK, now let's create a test PHP project. The contents of the Nginx config
+should be like this:
+<pre>
+server {
+  server_name test-php.local;
+  root DESTINATION/OF/YOUR/WEBSITE/test-php;
+  index index.php;
 
-### To be done
+  location ~ \.php$ {
+    fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    include snippets/fastcgi-php.conf;
+  }
+}
+</pre>
 
-## Xdebug
+And create an `index.php` file, also delete the `index.html` file. Write something
+like `<?php echo 123;` in the `index.php` file to check if it works.
+
+Go to `http://test-php.local` and check if you see `123` on the page :)
+
+### Xdebug
 
 To install Xdebug, run `sudo apt-get install php-xdebug`.
 
@@ -136,5 +154,31 @@ go to the end of the file and paste this content:
 
 ```
 [xdebug]
-xdebug.mode=debug
+xdebug.mode=develop,debug
 ```
+
+Further instructions can be found in PhpStorm's guide:
+https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html
+
+## MySQL
+
+`sudo apt install mysql-server`
+
+Check if it works:
+
+`systemctl status mysql.service`
+
+`sudo mysql`
+
+Now we should change auth method for our development purposes.
+
+Run:
+
+`SELECT user,authentication_string,plugin,host FROM mysql.user;`
+
+In this example, you can see that the root user does in fact authenticate using the auth_socket plugin.
+To configure the root account to authenticate with a password, run the following ALTER USER command:
+
+`ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';`
+
+All good! You can now exit mysql via Ctrl+D or writing `exit;`
