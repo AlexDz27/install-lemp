@@ -183,6 +183,13 @@ To configure the root account to authenticate with a password, run the following
 
 All good! You can now exit mysql via Ctrl+D or writing `exit;`
 
+## Node.js
+
+```
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
 ## GitHub ssh
 
 `ssh-keygen -t ed25519 -C "alexeydzyuba27@gmail.com"`
