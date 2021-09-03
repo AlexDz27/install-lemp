@@ -182,3 +182,20 @@ To configure the root account to authenticate with a password, run the following
 `ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';`
 
 All good! You can now exit mysql via Ctrl+D or writing `exit;`
+
+## GitHub ssh
+
+`ssh-keygen -t ed25519 -C "alexeydzyuba27@gmail.com"`
+
+`eval "$(ssh-agent -s)"`
+
+`ssh-add ~/.ssh/id_ed25519`
+
+Copy contents of `~/.ssh/id_ed25519.pub` to clipboard
+
+Go to Github "Settings > SSH and GPG keys" > "New SSH key" and put it there.
+
+Test if you can successfully connect to Github via SSH :)
+`ssh -T git@github.com`
+There should be something like
+`Hi AlexDz27! You've successfully authenticated, but GitHub does not provide shell access.`
