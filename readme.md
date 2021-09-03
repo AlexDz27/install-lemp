@@ -188,6 +188,10 @@ All good! You can now exit mysql via Ctrl+D or writing `exit;`
 ```
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+# To check if everything is fine
+node -v
+npm -v
 ```
 
 ## GitHub ssh
