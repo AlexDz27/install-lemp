@@ -16,7 +16,7 @@ sudo apt-get update
 
 Now we can install PHP:
 
-`sudo apt-get install php8.0`
+`sudo apt-get install php8.1`
 
 Check the PHP installation via this command:
 
@@ -24,11 +24,11 @@ Check the PHP installation via this command:
 
 You should get something like this:
 
-`PHP 8.0.0 (cli) (built: Nov 27 2020 12:26:22) ( NTS )`
+`PHP 8.1.0 (cli) (built: Nov 27 2020 12:26:22) ( NTS )`
 
 Next, you should install common modules (extensions) for PHP. Here's the command for that:
 
-`sudo apt-get install php8.0-fpm php8.0-curl php8.0-gd php8.0-mbstring php8.0-zip php8.0-mysql php8.0-xml`
+`sudo apt install php8.1-fpm php8.1-curl php8.1-gd php8.1-mbstring php8.1-zip php8.1-mysql php8.1-xml`
 
 ## Nginx
 
